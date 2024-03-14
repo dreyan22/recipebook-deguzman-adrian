@@ -1,18 +1,16 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .models import Recipe
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
-def recipe_list(request):
-    recipes = Recipe.objects.all()
-    context = {
-        'recipes': recipes
-    }
-    return render(request, 'ledger/recipe_list.html', context)
+class RecipeListView(ListView):
+    model = Recipe
+    template_name = "ledger/recipe_list.html"
 
 
-def recipe_detail(request, pk):
-    recipe = Recipe.objects.get(pk=pk)
-    context = {
-        'recipe': recipe
-    }
-    return render(request, 'ledger/recipe_detail.html', context)
+class RecipeDetailView(LoginRequiredMixin, DetailView):
+    model = Recipe
+    template_name = "ledger/recipe_detail.html"
