@@ -5,7 +5,7 @@
     {% if request.user.is_authenticated %}
         {% include 'registration/logout.html' %}
     {% else %}
-        {% include 'registration/login.html' %}
+        {% include 'registration/login.html' with page='home' %}
     {% endif %}
 
     {% block content %}
