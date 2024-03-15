@@ -1,0 +1,14 @@
+<head>
+    <h1>Recipe Book</h1>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        {% include 'registration/logout.html' %}
+    {% else %}
+        {% include 'registration/login.html' %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

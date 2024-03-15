@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Recipe List</title>
-</head>
-<body>
-    {% if request.user.is_authenticated %}
-        <h1>Hello {{ request.user.username }}</h1>
-        <form action="{% url 'logout' %}" method="POST">
-            {% csrf_token %}
-            <button type="submit">LOGOUT</button>
-        </form>
-    {% else %}
-        <h1>Recipe Book</h1>
-    {% endif %}
+{% extends 'ledger/recipe_header.html' %}
+{% block content %}
+    <h3>Recipe List</h3>
     <ul>
     {% for recipe in object_list %}
         <li><a href="{{recipe.get_absolute_url}}">{{ recipe.name }}</a></li>
     {% endfor %}
     </ul>
-</body>
+{% endblock %}
 </html>
