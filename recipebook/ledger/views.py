@@ -3,7 +3,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, UpdateView
 
 from .models import Recipe, RecipeImage
@@ -20,8 +20,8 @@ class RecipeImageCreateView(LoginRequiredMixin, CreateView):
         form.instance.recipe = Recipe.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
 
-    # def get_success_url(self):
-    #     return reverse_lazy('ledger:recipe_detail', kwargs={ 'pk': self.object.pk })
+    def get_success_url(self):
+        return reverse('ledger:recipe_detail', args=[str(self.object.recipe.id)])
 
 
 class RecipeListView(ListView):
