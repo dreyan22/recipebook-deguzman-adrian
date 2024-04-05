@@ -1,6 +1,12 @@
 {% extends 'ledger/recipe_header.html' %}
+{% load static %}
 {% block content %}
     <h2>{{ object.name }} </h2>
+
+    {% for image in object.recipe_images.all %}
+        <img src="{{ image.recipe_image.url }}" alt="{{ image.description }}">
+    {% endfor %}
+
     <h4>Author: {{ object.author.name }}</h4>
     <p>Created on: {{ object.created_on }}<br>Updated on: {{ object.updated_on }}</p>
     
