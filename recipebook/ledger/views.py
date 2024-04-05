@@ -15,10 +15,13 @@ class RecipeImageCreateView(LoginRequiredMixin, CreateView):
     form_class = RecipeImageForm
     template_name = 'ledger/recipeimage_create.html'
     login_url = '/accounts/login/'
-    
+
     def form_valid(self, form):
         form.instance.recipe = Recipe.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
+
+    # def get_success_url(self):
+    #     return reverse_lazy('ledger:recipe_detail', kwargs={ 'pk': self.object.pk })
 
 
 class RecipeListView(ListView):
@@ -40,9 +43,6 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     form_class = RecipeForm
     template_name = 'ledger/recipe_create.html'
     login_url = '/accounts/login/'
-
-    # def get_success_url(self):
-    #     return reverse_lazy('recipe/add', kwargs={ 'pk': self.object.pk })
     
     
 class RecipeUpdateView(LoginRequiredMixin, UpdateView):

@@ -6,15 +6,21 @@
     {% for image in object.recipe_images.all %}
         <img src="{{ image.recipe_image.url }}" alt="{{ image.description }}">
     {% endfor %}
-
-    <p>{{ object }}</p>
+    
     <form method="POST">
         {% csrf_token %}
         {{ form.as_div }}
+        <ul>
+            {% for recipe_ingredient in object.ingredients.all %}
+                <li>{{ recipe_ingredient.ingredient.name }}: {{ recipe_ingredient.quantity }}</li>
+            {% endfor %}
+        </ul>
         <button type="submit">
             Submit
         </button>
     </form>
+    <a href="{% url 'ledger:recipeimage_create' object.id %}">Add image</a>
+    <br><br>
     <a href="/recipes/list">Back to Recipes List</a>
 {% endblock %}
 </html>

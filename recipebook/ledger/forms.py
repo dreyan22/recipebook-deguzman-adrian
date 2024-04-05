@@ -8,6 +8,7 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = '__all__'
 
+
 class RecipeImageForm(forms.ModelForm):
     class Meta:
         model = RecipeImage

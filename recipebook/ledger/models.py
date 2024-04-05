@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from accounts.models import Profile
 
 
@@ -41,5 +41,5 @@ null=False)
     def __str__(self):
         return self.description
     
-    # def get_absolute_url(self):
-    #     return reverse('ledger:recipe_detail', args=[self.kwargs['pk']])
+    def get_absolute_url(self):
+        return reverse('ledger:recipe_detail', args=[self.kwargs['pk']])

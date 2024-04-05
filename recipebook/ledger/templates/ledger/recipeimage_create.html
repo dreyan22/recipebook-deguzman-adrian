@@ -8,5 +8,6 @@
             {{ form.as_div }}
             <button type="submit">Submit</button>
         </form>
+        <a href="{% url 'ledger:recipeimage_create' object.id %}">Add image</a>
     </body>
 </html>
