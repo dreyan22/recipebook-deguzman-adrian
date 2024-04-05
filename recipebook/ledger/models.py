@@ -40,3 +40,6 @@ null=False)
 
     def __str__(self):
         return self.description
+    
+    # def get_absolute_url(self):
+    #     return reverse('ledger:recipe_detail', args=[self.kwargs['pk']])
