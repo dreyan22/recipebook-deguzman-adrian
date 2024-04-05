@@ -7,14 +7,14 @@
         <img src="{{ image.recipe_image.url }}" alt="{{ image.description }}">
     {% endfor %}
 
-    <h4>Author: {{ object.author.name }}</h4>
-    <p>Created on: {{ object.created_on }}<br>Updated on: {{ object.updated_on }}</p>
-    
-    <ul>
-        {% for recipe_ingredient in object.ingredients.all %}
-            <li>{{ recipe_ingredient.ingredient.name }}: {{ recipe_ingredient.quantity }}</li>
-        {% endfor %}
-    </ul>
+    <p>{{ object }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button type="submit">
+            Submit
+        </button>
+    </form>
     <a href="/recipes/list">Back to Recipes List</a>
 {% endblock %}
 </html>

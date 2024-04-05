@@ -6,7 +6,10 @@
     </head>
     <body>
         {% if request.user.is_authenticated %}
-            {% include 'registration/logout.html' %}
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">LOGOUT</button>
+            </form>
         {% else %}
             {% include 'registration/login.html' with page='home' %}
         {% endif %}
